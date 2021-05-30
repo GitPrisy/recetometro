@@ -1,0 +1,68 @@
+/* Cards */
+.card {
+    margin: 1rem;
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 1rem;
+    border: hidden;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+    /* height: 18rem */
+}
+
+.card-header:first-child {
+    border-radius: 1rem 1rem 0 0;
+}
+
+.card-img-body, .card-img {
+    border-radius: 1rem 0 0 1rem;
+}
+
+.card-img-top{
+    border-radius: 1rem 1rem 0 0;
+}
+
+.card-img-body {
+    width: 300px;
+    height: 225px;
+}
+
+.card-img-top {
+    width: 300px;
+    height: 225px;
+}
+
+.card-link {
+    font-size: 1rem;
+    margin-left: 40%;
+    color: --orange;
+}
+
+/* Horizontal cards */
+.card-img {
+    height: 225px;
+    width: 300px;
+}
+
+.card-h {
+    width: 100%;
+    flex-flow: wrap;
+    height: 225px;
+}
+
+.card-h .card-img-body {
+    flex: 1;
+    height: 225px;
+    width: 200px;
+}
+
+.card-h .card-body {
+    flex: 2;
+    height: 225px;
+}
+
+.card-h .card-time {
+    position: absolute;
+    bottom: 8%;
+    right: 2.5%;
+}

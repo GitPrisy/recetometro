@@ -1,0 +1,33 @@
+.sidenav {
+    padding-top: 60px;
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 5;
+    top: 0;
+    left: 0;
+    background-color: #0F0F0F;
+    overflow-x: hidden;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: 0.5s;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0px;
+}
+
+.sidenav a {
+    color: rgb(240, 240, 240);
+    display: block;
+    padding: 8px 8px 8px 32px;
+    transition: all 0.3s ease 0s;
+}
+
+#sidebar-button-close {
+    position: absolute;
+    top: 1.7%;
+    left: 13%;
+}
