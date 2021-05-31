@@ -32,6 +32,8 @@ Route::post('/receta/{id}/vote-down', [RecipeController::class, 'vote_down'])->n
 
 Route::get('/perfil/{nickname}', [ProfileController::class, 'index'])->name('perfil.index');
 Route::get('/perfil/{nickname}/recetas', [ProfileController::class, 'show'])->name('perfil.show');
+Route::get('/perfil/{nickname}/edit', [ProfileController::class, 'edit'])->name('perfil.edit');
+Route::put('/perfil/{nickname}', [ProfileController::class, 'update'])->name('perfil.update');
 
 Route::get('/blogs', [HomeController::class, 'index']);
 Auth::routes();

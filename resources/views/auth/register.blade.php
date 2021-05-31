@@ -67,9 +67,13 @@
                                         <label for="mailable" class="custom-control-label"></label>
                                     </div>
                                     <script>
-                                        if (document.getElementById("mailable").checked) {
-                                            document.getElementById("mailableHidden").disabled = true;
-                                        }
+                                        document.getElementById("mailable").addEventListener('change', (event) => {
+                                            if (event.currentTarget.checked) {
+                                                document.getElementById("mailableHidden").disabled = true;
+                                            } else {
+                                                document.getElementById("mailableHidden").disabled = false;
+                                            }
+                                        })
                                     </script>
                                 </div>
                             </div>

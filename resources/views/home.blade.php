@@ -47,8 +47,8 @@
         }
 
         var page = 1;
-        $(document).on('scrollstart', function(){
-            if($(window).scrollTop() + $(window).height() >= $(document).height()) {
+        $(document).scroll( function(){
+            if($(window).scrollTop() + window.innerHeight >= $(document).height()-200) {
                 if(page < $('#post-data').attr('pages')) {
                     page++
                     loadMore(page);

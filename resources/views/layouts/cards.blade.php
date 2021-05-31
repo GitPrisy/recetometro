@@ -9,7 +9,7 @@
         }).then(function(res) {
             const votos = document.getElementsByClassName('vote');
 
-            for (let i = 0; i < votos.length; i++) {
+            for (let i = 0; i < votos.length/2; i++) {
                 let voto = votos[i];
                 if (voto.getAttribute('recipe-id') == id) {
                     let card_pair = (votos.length / 2) + i;
@@ -38,7 +38,7 @@
         }).then(function(res) {
             const votos = document.getElementsByClassName('vote');
 
-            for (let i = 0; i < votos.length; i++) {
+            for (let i = 0; i < votos.length/2; i++) {
                 let voto = votos[i];
                 if (voto.getAttribute('recipe-id') == id) {
                     let card_pair = (votos.length / 2) + i;
@@ -58,6 +58,7 @@
         })
     }
 </script>
+@if ($recipes->count() > 0)
 @foreach ($recipes as $key=>$recipe)
 
 <!-- Desktop cards -->
@@ -72,7 +73,7 @@
             <a class="" href={{ route('receta.show', $recipe) }}>Seguir leyendo...</a>
         </p>
         @auth
-        @if (! $recipe_votes[$key]->where('user_id', '=', Auth::user()->id)->first())
+        @if (!$recipe_votes[$key]->where('user_id', '=', Auth::user()->id)->first())
         <span role="button" class="icon-primary vote" onclick="vote_up('{{$recipe->id}}')" recipe-id="{{$recipe->id}}" recipe-votes="{{$n_votes[$key]}}">
             <i class="far fa-heart"></i>
             {{$n_votes[$key]}}
@@ -175,3 +176,6 @@
     </script>
 </div>
 @endforeach
+@else
+<h3>Parece que no hay recetas por aquí... <br>:(</h3>
+@endif

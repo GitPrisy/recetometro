@@ -53,7 +53,7 @@
 
         var page = 1;
         $(window).scroll(function(){
-            if($(window).scrollTop() + $(window).height() >= $(document).height()) {
+            if($(window).scrollTop() + window.innerHeight >= $(document).height()-200) {
                 if(page < $('#post-data').attr('pages')) {
                     page++
                     loadMore(page);
@@ -66,7 +66,7 @@
 
 @section('footer')
 <!-- Footer -->
-<footer class="bg-dark text-center text-white mt-5">
+<footer class="footer bg-dark text-center text-white mt-5">
     <div class="container px-4 py-2">
         <section class="my-auto">
 
