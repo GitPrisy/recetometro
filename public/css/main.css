@@ -18,3 +18,27 @@
     margin-bottom: 5px;
 }
 
+.fancy-file-label{
+    height: 40px;
+    width: 250px;
+    font-weight: 600;
+    background-color: var(--white);
+    border-radius: .25rem;
+    border: 1px solid;
+    border-color: var(--secondary);
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 2s ease;
+
+}
+
+.fancy-file-label:hover{
+    color: var(--primary);
+    background-color: var(--dark);
+}
+
+.fancy-file-input{
+    display: none;
+}

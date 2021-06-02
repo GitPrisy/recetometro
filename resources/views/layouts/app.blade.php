@@ -37,14 +37,14 @@
 
             <span id="sidebar-button-close" class="icon-light" onclick="closeNav()"><i class="fas fa-times"></i></span>
 
-            <div>
-                <h2><a href="/">Inicio</a></h2>
-                <h2><a href="#"></a></h2>
+            <div class="menu">
+                <h2><a href="https://recetometro.es/">Inicio</a></h2>
                 @auth
+                <h2><a href="{{ route('receta.create') }}">Nueva receta</a></h2>
                 <h2><a href="{{ route('perfil.index', Auth::user()->nickname) }}">Perfil</a></h2>
                 @endauth
-                <h2><a href="#">Contact</a></h2>
                 @guest
+                    <h2><a href="{{ route('register') }}">Nueva receta</a></h2>
                     <h2><a href="{{ route('login') }}">Iniciar sesión</a></h2>
                     <h2><a href="{{ route('register') }}">Crear cuenta</a></h2>
                 @endguest
@@ -58,6 +58,45 @@
                     </form>
                 @endauth
             </div>
+            <!-- Footer -->
+            <footer class="text-center">
+                <div class="d-flex align-content-end justify-content-center flex-wrap social px-4 py-2">
+                    <section class="mt-3">
+                        <div class="row justify-content-center">
+                            <div class="col">
+                                <a class="icon-light " href="https://www.facebook.com/Recetometro-107552824877778">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+
+                                <a class="icon-light " href="https://twitter.com/xprisy">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                            </div>
+                            <div class="col">
+                                <a class="icon-light " href="https://www.instagram.com/recetometro/">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+
+                                <a class="icon-light " href="https://github.com/GitPrisy/recetometro">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="mt-3">
+                        <div class="row justify-content-center">
+                            <div class="col">
+                                <h5>Enlaces de interés: </h5>
+                                <a href="#!" class="mx-5">Sobre nosotros</a>
+                                <a href="#!" class="mx-5">Contáctanos</a>
+                                <a href="#!" class="mx-5">Privacidad</a>
+                            </div>
+                        </div>
+                    </section>
+                    <span class="copy">© 2021 Copyright:</span>
+                    <a class="text-white">Recetometro</a>
+                </div>
+            </footer>
         </div>
         <!-- Main navbar -->
         <nav class="navbar navbar-light bg-light sticky-top" style="z-index: 4;">
@@ -81,8 +120,6 @@
         </nav>
         <main class="py-4">
             @yield('content')
-
-            @yield('footer')
         </main>
 
     </div>

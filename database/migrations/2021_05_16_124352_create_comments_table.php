@@ -18,6 +18,7 @@ class CreateCommentsTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('recipe_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->boolean('visible')->default(true);
             $table->string('text');
             $table->timestamps();
         });

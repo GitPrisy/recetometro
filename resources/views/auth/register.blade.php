@@ -105,14 +105,20 @@
                             </div>
 
                             <div class="form-group row mb-0">
-                                <div class="col-md-4 offset-md-4">
+                                <div class="col-4 col-md-4 offset-md-4 mt-3">
                                     <button type="submit" class="btn btn-primary">
                                         Continuar
                                     </button>
                                 </div>
-                                <div class="col-md-3">
-                                    <a class="link-primary" href={{route('login')}}>¿Ya tienes cuenta?</a>
+                                <div class="col-12 col-sm-8 col-md-7 mt-3 offset-md-4 d-md-inline-block d-sm-flex justify-content-end">
+                                    <a href="{{route('login.social', 'google')}}" class="btn btn-outline-secondary">
+                                        <img alt="Google" title="Sign in with Google" class="mr-3" width="20px" src="{{ asset('images/logos/google_logo.png') }}" loading="lazy">
+                                        Continuar con Google
+                                    </a>
                                 </div>
+                            </div>
+                            <div class="row">
+                                
                             </div>
                         </form>
                     </div>

@@ -13,6 +13,7 @@ class Comment extends Model
         'user_id',
         'recipe_id',
         'text',
+        'visible',
     ];
 
     protected $dates = [

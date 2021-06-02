@@ -22,6 +22,7 @@ class CreateRecipesTable extends Migration
             $table->foreignId('mean_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->text('ingredients');
             $table->text('preparation');
+            $table->boolean('visible')->default(true);
             $table->foreignId('user_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });

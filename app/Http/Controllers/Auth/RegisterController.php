@@ -54,7 +54,21 @@ class RegisterController extends Controller
             'nickname' => ['required', 'string', 'max:255', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'mailable' => ['required', 'boolean'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', 'min:8', 'regex:/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/', 'confirmed'],
+        ], 
+        [
+            'name.required' => 'Debes rellenar el campo de nombre...',
+            'name.max' =>'El nombre no puede ser superior a :max caracteres...',
+            'nickname.required' => 'Debes rellenar el campo de nombre de usuario...',
+            'nickname.max' => 'El nombre de usuario no puede ser superior a :max caracteres...',
+            'nickname.unique' => 'Lo siento, ese nombre de usuario ya existe...',
+            'email.required' => 'Debes rellenar el campo de correo electrónico...',
+            'email.email' => 'El correo debe ser válido...',
+            'email.unique' => 'Ya existe un usuario con ese correo...',
+            'password.required' => 'Debes rellenar el campo de la contraseña...',
+            'password.min' => 'La contraseña debe tener mínimo :min caracteres...',
+            'password.regex' => 'La contraseña debe tener 8 caracteres con por lo menos un número, una letra y un carácter especial...',
+            'password.confirmed' => 'Las contraseñas no coinciden...',
         ]);
     }
 

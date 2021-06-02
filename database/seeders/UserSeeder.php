@@ -19,6 +19,16 @@ class UserSeeder extends Seeder
             'nickname' => 'Prisy',
             'email' => 'ivancesar2000@gmail.com',
             'mailable' => '1',
+            'rol_id' => '1',
+            'password' => '123qwe123',
+        ]);
+
+        DB::table('users')->insert([
+            'name' => 'Iván',
+            'nickname' => 'Mod',
+            'email' => 'moduser@recetometro.com',
+            'mailable' => '1',
+            'rol_id' => '2',
             'password' => '123qwe123',
         ]);
     }

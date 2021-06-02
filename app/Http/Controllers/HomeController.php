@@ -45,6 +45,10 @@ class HomeController extends Controller
                 
             return response()->json(['html'=>$view]);
         }
+        
+        if(!isset($n_votes)){
+            $n_votes = 0;
+        }
 
         return view('home')->with(['recipes' => $recipes, 'recipe_images' => $recipe_images, 'recipe_votes' => $recipe_votes, 'n_votes' => $n_votes]);
     }

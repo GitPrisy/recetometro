@@ -20,11 +20,46 @@
 }
 
 .sidenav a {
-    color: rgb(240, 240, 240);
+    color: var(--light);
     display: block;
     padding: 8px 8px 8px 32px;
     transition: all 0.3s ease 0s;
 }
+
+.sidenav a:hover {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+.sidenav footer a {
+    padding: 0;
+}
+
+.sidenav .copy {
+    margin-top: .75rem;
+    color: var(--light);
+    font-weight: 600;
+}
+
+.sidenav footer h5 {
+    margin-top: .75rem;
+    color: var(--light);
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.sidenav .menu {
+    height: 45vh;
+}
+
+.sidenav footer .social {
+    height: 45vh;
+}
+
+/* .sidenav footer {
+    position: absolute;
+    transform: translate(-20px, 5vh);
+} */
 
 #sidebar-button-close {
     position: absolute;

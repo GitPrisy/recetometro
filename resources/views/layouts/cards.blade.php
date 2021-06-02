@@ -57,6 +57,16 @@
 
         })
     }
+
+    function hide(id) {
+        const url = '/receta/' + id + '/hide';
+        const data = new URLSearchParams();
+        data.append('_token', '{{ csrf_token() }}');
+        fetch(url, {
+            method: "POST",
+            body: data,
+        })
+    }
 </script>
 @if ($recipes->count() > 0)
 @foreach ($recipes as $key=>$recipe)
@@ -69,22 +79,23 @@
     <div class="card-body">
         <h4 class="card-title">{{$recipe->title}}</h4>
         <p class="card-text">
-            {{$recipe->preparation}}
+            {{Str::limit($recipe->description, 400) }}
             <a class="" href={{ route('receta.show', $recipe) }}>Seguir leyendo...</a>
         </p>
         @auth
         @if (!$recipe_votes[$key]->where('user_id', '=', Auth::user()->id)->first())
-        <span role="button" class="icon-primary vote" onclick="vote_up('{{$recipe->id}}')" recipe-id="{{$recipe->id}}" recipe-votes="{{$n_votes[$key]}}">
+        <span role="button" class="icon-primary vote" onclick="vote_up('{{$recipe->id}}')" recipe-id="{{$recipe->id}}" recipe-votes="{{$n_votes[$key]}}" style="position:absolute;bottom: 8%;">
             <i class="far fa-heart"></i>
             {{$n_votes[$key]}}
         </span>
         @else
-        <span role="button" class="icon-primary vote" onclick="vote_down('{{$recipe->id}}')" recipe-id="{{$recipe->id}}" recipe-votes="{{$n_votes[$key]}}">
+        <span role="button" class="icon-primary vote" onclick="vote_down('{{$recipe->id}}')" recipe-id="{{$recipe->id}}" recipe-votes="{{$n_votes[$key]}}" style="position:absolute;bottom: 8%;">
             <i class="fas fa-heart"></i>
             {{$n_votes[$key]}}
         </span>
         @endif
         @endauth
+        @authuser
         @guest
         <a href="/register" role="button" class="icon-primary vote text-decoration-none">
             <i class="far fa-heart"></i>
@@ -117,7 +128,7 @@
         <div class="card-body">
             <h4 class="card-title">{{$recipe->title}}</h4>
             <p class="card-text">
-                {{Str::limit($recipe->preparation, 240) }}
+                {{Str::limit($recipe->description, 240) }}
                 <br>
                 <a class="card-text" href={{ route('receta.show', $recipe->slug ?? '') }}>Seguir leyendo...</a>
             </p>

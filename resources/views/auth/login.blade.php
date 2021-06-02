@@ -34,6 +34,10 @@
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
+                                        <br>
+                                        <a href="{{ route('password.request') }}">
+                                            ¿No recuerdas tu contraseña?
+                                        </a>
                                     </span>
                                 @enderror
                             </div>
@@ -50,18 +54,17 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
+                            <div class="col-4 col-md-4 offset-md-4 mt-3">
                                 <button type="submit" class="btn btn-primary">
                                     Continuar
                                 </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        ¿No recuerdas tu contraseña?
-                                    </a>
-                                @endif
+                            </div>
+                            <div class="col-12 col-sm-8 col-md-7 mt-3 offset-md-4 d-md-inline-block d-sm-flex justify-content-end">
+                                <a href="{{route('login.social', 'google')}}" class="btn btn-outline-secondary">
+                                    <img alt="Google" title="Sign in with Google" class="mr-3" width="20px" src="{{ asset('images/logos/google_logo.png') }}" loading="lazy">
+                                    Continuar con Google
+                                </a>
                             </div>
                         </div>
                     </form>

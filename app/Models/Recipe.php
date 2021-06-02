@@ -16,6 +16,7 @@ class Recipe extends Model
         'mean_id',
         'ingredients',
         'preparation',
+        'visible',
         'user_id',
     ];
 

@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             MeanSeeder::class,
             TagSeeder::class,
-            UserSeeder::class,
+            RolSeeder::class,
         ]);
     }
 }

@@ -174,4 +174,21 @@ class RecipeController extends Controller
         }
         return back();
     }
+
+    /**
+     * Hide the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function hide($id)
+    {
+        $recipe = Recipe::findOrFail($id);
+        if(Auth::user()->rol_id == 1) {
+            $recipe->visible = false;
+            $recipe->save();
+        }
+        
+        return back();
+    }
 }
