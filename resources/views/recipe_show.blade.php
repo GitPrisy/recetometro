@@ -20,7 +20,7 @@
                 @foreach ($recipe_images as $key=>$recipe_image)
                 @if ($key == 0)
                 <div class="carousel-item active">
-                    <img src="/{{$recipe_image}}">
+                    <img class="img-fluid" src="/{{$recipe_image}}">
                 </div>
                 @else
                 <div class="carousel-item">
@@ -45,14 +45,16 @@
         </div>
 
         <h3 class="mt-4">Ingredientes: </h3>
-        <div class="texto-receta">
-            <p>{{$recipe->ingredients}}</p>
+        <div class="texto-receta" id="ingredients" value="{{$recipe->ingredients}}">
         </div>
 
         <h3 class="mt-4">Preparación: </h3>
-        <div class="texto-receta">
-            <p>{{$recipe->preparation}}</p>
+        <div class="texto-receta" id="preparation" value="{{$recipe->preparation}}">
         </div>
     </div>
-
+    <script src="https://rawgit.com/jackmoore/autosize/master/dist/autosize.min.js"></script>
+    <script>
+        document.getElementById('ingredients').innerHTML = document.getElementById('ingredients').getAttribute('value')
+        document.getElementById('preparation').innerHTML = document.getElementById('preparation').getAttribute('value')
+    </script>
 @endsection

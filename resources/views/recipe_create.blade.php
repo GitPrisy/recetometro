@@ -4,6 +4,15 @@
     #regiration_form fieldset:not(:first-of-type) {
         display: none;
     }
+
+    #char-limit{
+        display: inline-block;
+        width: 100%;
+        transform: translate(-10px, -90px);
+        text-align: right;
+        color: var(--primary);
+        font-weight: 600;
+    }
 </style>
 <div class="container">
     <div class="row justify-content-center">
@@ -75,19 +84,21 @@
                         <fieldset>
                             <h4>Pon un título a la receta</h4>
                             <input type="text" name="title" id="title" class="form-control mb-4" value="{{old('title')}}">
+                            <input type="button" name="previous" class="align-self-end previous btn btn-secondary" value="Previo" />
+                            <input type="button" name="next" class="align-self-end next btn btn-primary" value="Siguiente" />
                             @error('title')
                                 <span>
                                     <strong class="text-danger">{{ $message }}</strong>
                                 </span>
                             @enderror
-                            <input type="button" name="previous" class="align-self-end previous btn btn-secondary" value="Previo" />
-                            <input type="button" name="next" class="align-self-end next btn btn-primary" value="Siguiente" />
                         </fieldset>
                         <fieldset>
                             <h4>Una pequeña descripción para atraer al público</h4>
-                            <textarea class="form-control mb-4" name="description" id="description" rows="2">{{old('description')}}</textarea>
+                            <textarea class="editor form-control mb-4" name="description" id="description" rows="4">{{old('description')}}</textarea>
                             <input type="button" name="previous" class="align-self-end previous btn btn-secondary" value="Previo" />
                             <input type="button" name="next" class="align-self-end next btn btn-primary" value="Siguiente" />
+                            <div class="" id="char-limit"></div>
+
                             @error('description')
                                 <br>
                                 <span>
@@ -97,7 +108,7 @@
                         </fieldset>
                         <fieldset>
                             <h4>Indique la lista de ingredientes necesarios</h4>
-                            <textarea class="form-control mb-4" name="ingredients" id="ingredients" rows="3">{{old('ingredients')}}</textarea>
+                            <textarea class="editor form-control mb-4" name="ingredients" id="ingredients" rows="3">{{old('ingredients')}}</textarea>
                             <input type="button" name="previous" class="align-self-end previous btn btn-secondary" value="Previo" />
                             <input type="button" name="next" class="align-self-end next btn btn-primary" value="Siguiente" />
                             @error('ingredients')
@@ -109,7 +120,7 @@
                         </fieldset>
                         <fieldset>
                             <h4>Describa la preparación de la receta</h4>
-                            <textarea class="form-control mb-4" name="preparation" id="ingredients" rows="3">{{old('preparation')}}</textarea>
+                            <textarea class="editor form-control mb-4" name="preparation" id="preparation" rows="3">{{old('preparation')}}</textarea>
                             <input type="button" name="previous" class="align-self-end previous btn btn-secondary" value="Previo" />
                             <input type="button" name="next" class="align-self-end next btn btn-primary" value="Siguiente" />
                             @error('preparation')
@@ -124,7 +135,7 @@
                             <div class="mb-3">
                                 <label for="images" class="form-label fancy-file-label"> 
                                     <span class="icon-primary mr-3"><i class="far fa-images"></i></span>
-                                    Seleccionar archivos
+                                    <span id="input-file">Seleccionar imagenes</span>
                                 </label>
                                 <input class="form-control fancy-file-input" accept="image/png, image/gif, image/jpeg, image/jpg" type="file" name="images[]" multiple="" id="images">
                             </div>
@@ -151,7 +162,11 @@
             @endif
         </div>
     </div>
-    <script>
+    <script src="{{ asset('ckeditor-5/ckeditor.js') }}"></script>
+<script>
+        CKEDITOR.replace( 'ingredients' );
+        CKEDITOR.replace( 'preparation' );
+
         $(document).ready(function() {
             var current = 1,
                 current_step, next_step, steps;
@@ -179,6 +194,29 @@
                     .css("width", percent + "%")
                     .html(percent + "%");
             }
+        });
+
+        $('input[type=text]').on('keydown', function(e) {
+            if (e.which == 13) {
+                e.preventDefault();
+            }
+        });
+
+        $('input[type=file]').on('change', function() {
+            $('#input-file').text('Imagen seleccionada');
+            $('#input-file').css('color', '#e3342f');
+        });
+
+        $("#description").on('keypress', function() {
+            var limit = 250;
+            $("#description").attr('maxlength', limit);
+            var init = $(this).val().length;
+            
+            if(init<limit){
+                init++;
+                $('#char-limit').text(init+'/'+limit); 
+            }
+        
         });
     </script>
     @endsection

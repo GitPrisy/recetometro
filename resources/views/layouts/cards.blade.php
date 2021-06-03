@@ -74,13 +74,13 @@
 <!-- Desktop cards -->
 <div class="card card-h d-none d-lg-flex">
     <div class="card-img-body">
-        <img class="card-img" src="/{{$recipe_images[$key]}}" alt="Card image cap" />
+        <img class="card-img img-fluid" src="/{{$recipe_images[$key]}}" alt="Card image cap" />
     </div>
     <div class="card-body">
         <h4 class="card-title">{{$recipe->title}}</h4>
         <p class="card-text">
-            {{Str::limit($recipe->description, 400) }}
-            <a class="" href={{ route('receta.show', $recipe) }}>Seguir leyendo...</a>
+            {{$recipe->description}}
+            <a href={{ route('receta.show', $recipe) }}>Seguir leyendo...</a>
         </p>
         @auth
         @if (!$recipe_votes[$key]->where('user_id', '=', Auth::user()->id)->first())
@@ -95,7 +95,6 @@
         </span>
         @endif
         @endauth
-        @authuser
         @guest
         <a href="/register" role="button" class="icon-primary vote text-decoration-none">
             <i class="far fa-heart"></i>
@@ -123,13 +122,15 @@
 <div class="col-12 col-md-6">
     <div class="card d-lg-none">
         <div class="card-img-body">
-            <img class="card-img-top" src="/{{$recipe_images[$key]}}" alt="Card image cap" />
+            <img class="card-img-top img-fluid" src="/{{$recipe_images[$key]}}" alt="Card image cap" />
         </div>
         <div class="card-body">
             <h4 class="card-title">{{$recipe->title}}</h4>
-            <p class="card-text">
-                {{Str::limit($recipe->description, 240) }}
+            <p class="card-text mobile-description">
+                {{$recipe->description}}
                 <br>
+            </p>
+            <p>
                 <a class="card-text" href={{ route('receta.show', $recipe->slug ?? '') }}>Seguir leyendo...</a>
             </p>
             @auth

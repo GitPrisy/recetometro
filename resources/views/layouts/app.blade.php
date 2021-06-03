@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="utf-8">
+    <link rel="shortcut icon" href="{{asset('favicon.ico')}}" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="preload" href="{{ asset('js/app.js') }}" as="script">
     <!-- CSRF Token -->
