@@ -21,11 +21,10 @@
                         @csrf
                         <fieldset>
                             <h4>Seleccione el tipo de plato</h4>
-
                             <div class="form-group row row-cols-2">
                                 @foreach ($tags as $tag)
                                 <div class="col custom-control custom-checkbox">
-                                    <input name="tag[{{$tag['id']}}]" id="{{$tag['slug']}}" type="checkbox" class="custom-control-input tag-checkbox" value="{{$tag['id']}}">
+                                    <input name="tag[{{$tag['id']}}]" id="{{$tag['slug']}}" type="checkbox" class="custom-control-input tag-checkbox" value="{{$tag['id']}}" {{ ( is_array(old('tag')) && in_array($tag->id, old('tag')) ) ? 'checked ' : '' }} />
                                     <label for="{{$tag['slug']}}" class="custom-control-label">{{$tag["name"]}}</label>
                                 </div>
                                 @endforeach
@@ -53,12 +52,12 @@
                                 @foreach ($means as $mean)
                                 @if ($mean["slug"] == "tradicional")
                                 <div class="col custom-control custom-radio">
-                                    <input name="mean" id={{$mean["slug"]}} type="radio" class="custom-control-input" value={{$mean["id"]}} checked>
+                                    <input name="mean" id={{$mean["slug"]}} type="radio" class="custom-control-input" value={{$mean["id"]}} {{(old('mean') == $mean["id"]) ? 'checked' : ''}} checked>
                                     <label for="{{$mean["slug"]}}" class="custom-control-label">{{$mean["name"]}}</label>
                                 </div>
                                 @else
                                 <div class="col custom-control custom-radio">
-                                    <input name="mean" id={{$mean["slug"]}} type="radio" class="custom-control-input" value={{$mean["id"]}}>
+                                    <input name="mean" id={{$mean["slug"]}} type="radio" class="custom-control-input" value={{$mean["id"]}} {{(old('mean') == $mean["id"]) ? 'checked' : ''}}>
                                     <label for="{{$mean["slug"]}}" class="custom-control-label">{{$mean["name"]}}</label>
                                 </div>
                                 @endif

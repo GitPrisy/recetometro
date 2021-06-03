@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <link rel="preload" href="{{ asset('js/app.js') }}" as="script">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -18,11 +18,11 @@
         crossorigin="anonymous" />
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/sidenav.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/cards.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/carousel.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/main.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet" rel="preload">
+    <link href="{{ asset('css/sidenav.css') }}" rel="stylesheet" rel="preload">
+    <link href="{{ asset('css/cards.css') }}" rel="stylesheet" rel="preload">
+    <link href="{{ asset('css/carousel.css') }}" rel="stylesheet" rel="preload">
+    <link href="{{ asset('css/main.css') }}" rel="stylesheet" rel="preload">
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
@@ -102,21 +102,14 @@
         <nav class="navbar navbar-light bg-light sticky-top" style="z-index: 4;">
             <div class="col-3 d-flex justify-content-start">
                 <span id="sidebar-button-open" class="icon-dark"><i class="fas fa-bars"></i></span>
-                <!-- <h4 class="mt-1"><strong>MENU</strong></h4> -->
             </div>
             <div class="col-6 d-flex justify-content-center">
                 <h1 class="logo text-dark ml-md-0">Recetometro</h1>
             </div>
 
             <div class="col-3 d-flex justify-content-end">
-                <!-- <h4 class="mt-2 mx-3"><strong>CREA</strong></h4> -->
                 <span class="icon-dark"><a class="text-dark" href="{{ route('receta.create') }}"><i class="fas fa-bars"></i></a></span>
             </div>
-            <!-- <div class="col-3 d-flex justify-content-end">
-                <form class="form-inline d-none d-md-flex">
-                    <input class="form-control mb-2" type="search" placeholder="Search" aria-label="Search">
-                </form>
-            </div> -->
         </nav>
         <main class="py-4">
             @yield('content')
@@ -140,8 +133,6 @@
         $('#sidebar-button-close').on('click', function () {
             $('#mySidenav').width('0px');
         });
-
-        
     </script>
 </body>
 
