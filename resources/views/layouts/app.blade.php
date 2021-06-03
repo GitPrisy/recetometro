@@ -35,7 +35,7 @@
         <!-- Sidebar menu -->
         <div id="mySidenav" class="sidenav">
 
-            <span id="sidebar-button-close" class="icon-light" onclick="closeNav()"><i class="fas fa-times"></i></span>
+            <span id="sidebar-button-close" class="icon-light"><i class="fas fa-times"></i></span>
 
             <div class="menu">
                 <h2><a href="https://recetometro.es/">Inicio</a></h2>
@@ -101,7 +101,7 @@
         <!-- Main navbar -->
         <nav class="navbar navbar-light bg-light sticky-top" style="z-index: 4;">
             <div class="col-3 d-flex justify-content-start">
-                <span id="sidebar-button-open" class="icon-dark" onclick="openNav()"><i class="fas fa-bars"></i></span>
+                <span id="sidebar-button-open" class="icon-dark"><i class="fas fa-bars"></i></span>
                 <!-- <h4 class="mt-1"><strong>MENU</strong></h4> -->
             </div>
             <div class="col-6 d-flex justify-content-center">
@@ -124,13 +124,24 @@
 
     </div>
     <script>
-        function openNav() {
-            document.getElementById("mySidenav").style.width = "250px";
-        }
+        $('#sidebar-button-open').on('click', function () {
+            $('#mySidenav').width('250px');
+            $("#mySidenav").click(function(e){
+                e.stopPropagation(); 
+            });
+        });
 
-        function closeNav() {
-            document.getElementById("mySidenav").style.width = "0";
-        }
+        $(document).click(function(){
+            if ( $('#mySidenav').width() >= 200) {
+                $("#mySidenav").width('0px'); 
+            }
+        });
+
+        $('#sidebar-button-close').on('click', function () {
+            $('#mySidenav').width('0px');
+        });
+
+        
     </script>
 </body>
 
