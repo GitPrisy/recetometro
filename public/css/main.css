@@ -1,5 +1,6 @@
-/* Iconos */
 
+
+/* Iconos */
 .icon-dark {
     font-size: 1.5em;
     color: #0f0f0f;
@@ -41,4 +42,13 @@
 
 .fancy-file-input{
     display: none;
+}
+
+#char-limit{
+    display: inline-block;
+    width: 100%;
+    transform: translate(-10px, -90px);
+    text-align: right;
+    color: var(--primary);
+    font-weight: 600;
 }

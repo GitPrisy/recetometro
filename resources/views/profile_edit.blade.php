@@ -15,7 +15,9 @@
 <div class="container emp-profile">
     <form id="profile_update" method="post" action="{{ route('perfil.update', $user->nickname) }}" enctype="multipart/form-data">
     @method('PUT')
+
     @csrf
+
         <div class="row">
             <div class="col-12">
                 <div class="profile-img">
@@ -121,7 +123,7 @@
 
         <div class="row mt-2">
             <div class="col-md-6 text-center">
-                <button type="sumbit" class="btn profile-edit-btn mt-3">Guardar cambios</button>
+                <button type="submit" class="btn profile-edit-btn mt-3">Guardar cambios</button>
             </div>
             <div class="col-md-6 text-center">
                 <a class="btn profile-edit-btn mt-3" href="{{route('perfil.index', $user->nickname)}}">Volver al perfil</a>

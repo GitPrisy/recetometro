@@ -32,21 +32,21 @@ class User extends Authenticatable
 
     public function recipes()
     {
-        $this->hasMany(Recipe::class);
+        return $this->hasMany(Recipe::class);
     }
 
     public function rol()
     {
-        $this->belongsTo(Rol::class);
+        return $this->belongsTo(Rol::class);
     }
 
     public function comments()
     {
-        $this->hasMany(Comment::class);
+        return $this->hasMany(Comment::class);
     }
 
     public function votes()
     {
-        $this->hasMany(Vote::class);
+        return $this->hasMany(Vote::class);
     }
 }

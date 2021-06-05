@@ -18,7 +18,7 @@
             <div class="col">
                 <div class="profile-head">
                     <h2 class='text-center mt-3'>
-                        {{$user->name}}
+                        {{$user->nickname}}
                     </h2> 
                 </div>
             </div>
@@ -61,7 +61,7 @@
                         </div>
                         <div class="row mt-2">
                             <div class="col-12">
-                                <label>Nombre: </label>
+                                <label>Nombre completo: </label>
                             </div>
                             <div class="col">
                                 <p>{{$user->name}}</p>

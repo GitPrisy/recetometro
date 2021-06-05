@@ -74,12 +74,13 @@
 <!-- Desktop cards -->
 <div class="card card-h d-none d-lg-flex">
     <div class="card-img-body">
-        <img class="card-img img-fluid" src="/{{$recipe_images[$key]}}" alt="Card image cap" />
+        <img class="card-img" src="/{{$recipe_images[$key]}}" alt="Card image cap" />
     </div>
     <div class="card-body">
         <h4 class="card-title">{{$recipe->title}}</h4>
-        <p class="card-text">
+        <p class="card-text mb-1 text-break">
             {{$recipe->description}}
+            <br>
             <a href={{ route('receta.show', $recipe) }}>Seguir leyendo...</a>
         </p>
         @auth

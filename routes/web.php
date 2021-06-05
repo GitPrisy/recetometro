@@ -3,8 +3,10 @@
 use App\Models\Recipe;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BotController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RecipeController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\LoginController;
 
@@ -44,4 +46,7 @@ Auth::routes();
 Route::get('login/social/{provider}', [LoginController::class, 'redirectToProvider'])->name('login.social');
 Route::get('login/social/callback/{provider}', [LoginController::class, 'handleProviderCallback']);
 
+Route::post('/receta/comment', [CommentController::class, 'store'])->name('comment.store');
+
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::match(['get', 'post'], '/carpetasupersecreta', [BotController::class, 'setup']);

@@ -78,7 +78,7 @@ class RecipeController extends Controller
                 ]);
             }
         }
-
+        session(['recipe' => $recipe]);
         return redirect('/');
     }
 

@@ -4,15 +4,6 @@
     #regiration_form fieldset:not(:first-of-type) {
         display: none;
     }
-
-    #char-limit{
-        display: inline-block;
-        width: 100%;
-        transform: translate(-10px, -90px);
-        text-align: right;
-        color: var(--primary);
-        font-weight: 600;
-    }
 </style>
 <div class="container">
     <div class="row justify-content-center">

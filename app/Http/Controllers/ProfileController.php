@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreProfilePost;
 use App\Models\User;
 use App\Models\Recipe;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+use App\Http\Requests\UpdateProfilePut;
 
 class ProfileController extends Controller
 {
     public function index($nickname){
+        User::where('nickname', '=', $nickname)->firstOrFail();
 
         $user = User::select()->where('nickname', '=', $nickname)->get();
         $recipes = Recipe::select()->where('user_id', '=', $user[0]->id)->get();
@@ -31,6 +32,7 @@ class ProfileController extends Controller
 
     public function show($nickname, Request $request)
     {
+        User::where('nickname', '=', $nickname)->firstOrFail();
         $user = User::select()->where('nickname', '=', $nickname)->get();
         if($user->count()){
             $recipes = Recipe::where('user_id', '=', $user[0]->id)->orderBy('created_at', 'desc')->paginate(6);
@@ -68,6 +70,8 @@ class ProfileController extends Controller
      */
     public function edit($nickname)
     {
+        User::where('nickname', '=', $nickname)->firstOrFail();
+
         $user = User::select()->where('nickname', '=', $nickname)->get();
         if(Auth::user() == null || ((Auth::user()->id != $user[0]->id))){
             return abort(404);
@@ -83,10 +87,12 @@ class ProfileController extends Controller
      * @param  int  $nickname
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreProfilePost $request, $nickname)
+    public function update(UpdateProfilePut $request, $nickname)
     {
-        $user = User::select()->where('nickname', '=', $nickname)->get()[0];
+        User::where('nickname', '=', $nickname)->firstOrFail();
 
+        $user = User::select()->where('nickname', '=', $nickname)->get()[0];
+        
         $image = $request->file('profile_image');
 
         if($request->hasFile('profile_image')){
@@ -103,9 +109,8 @@ class ProfileController extends Controller
 
             return $this->edit($user->nickname);
         }
-
         $user->update($request->validated());
-      
+        $user->save();
         return $this->edit($user->nickname);
     }
 }

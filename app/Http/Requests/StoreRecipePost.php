@@ -36,7 +36,6 @@ class StoreRecipePost extends FormRequest
             'tag.required' => 'Selecciona por lo menos una etiqueta que represente tu receta...',
             'file.*.mimes' => 'El formato de la imagen no es válido (jpg, png, jpeg, gif)...',
             'file.*.max' => 'Los archivos ocupan demasiado espacio, prueba con algo más pequeño...',
-            'password.confirmed' => 'Las contraseñas no coinciden...',
         ];
     }
 
