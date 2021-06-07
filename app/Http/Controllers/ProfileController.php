@@ -111,6 +111,7 @@ class ProfileController extends Controller
         }
         $user->update($request->validated());
         $user->save();
-        return $this->edit($user->nickname);
+
+        return redirect(route('perfil.edit', $user->nickname));
     }
 }

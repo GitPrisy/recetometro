@@ -170,23 +170,6 @@
             </p>
         </div>
     </div>
-    <div class="d-lg-none">
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-        <!-- robasimple -->
-        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3650069535362055" data-ad-slot="2858588044" data-ad-format="auto" data-full-width-responsive="true"></ins>
-        <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-    </div>
-</div>
-
-<div class="d-lg-none">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    <!-- robasimple -->
-    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3650069535362055" data-ad-slot="2858588044" data-ad-format="auto" data-full-width-responsive="true"></ins>
-    <script>
-        (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
 </div>
 @endforeach
 @else

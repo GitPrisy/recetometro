@@ -12,8 +12,6 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
         integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
         crossorigin="anonymous" />
@@ -105,12 +103,17 @@
                 <span id="sidebar-button-open" class="icon-dark"><i class="fas fa-bars"></i></span>
             </div>
             <div class="col-6 d-flex justify-content-center">
-                <h1 class="logo text-dark ml-md-0">Recetometro</h1>
+                <h1 class="logo text-dark ml-md-0"><a href="https://recetometro.es/" style="color:inherit;text-decoration:inherit;">Recetometro</a></h1>
             </div>
 
             <div class="col-3 d-flex justify-content-end">
-                <span class="icon-dark"><a class="text-dark" href="{{ route('receta.create') }}"><i class="fas fa-bars"></i></a></span>
+                <form action="{{ route('receta.search') }}" method="GET" role="search" class="d-none d-md-flex">
+                    <input class="form-control me-2" type="search" name="titulo" placeholder="Buscar" aria-label="Search">
+                </form>
             </div>
+            <form action="{{ route('receta.search') }}" method="GET" role="search" class="d-flex d-md-none">
+                <input class="form-control me-2" type="search" name="titulo" placeholder="Buscar" aria-label="Search">
+            </form> 
         </nav>
         <main class="py-4">
             @yield('content')

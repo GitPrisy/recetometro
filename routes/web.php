@@ -24,15 +24,21 @@ use App\Http\Controllers\Auth\LoginController;
 //     return redirect('/');
 // });
 
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/buscar', [HomeController::class, 'search'])->name('receta.search');;
 
 Route::resource('receta', RecipeController::class, ['except' => [
     'index'
 ]]);
 
+Route::delete('/receta/{id}', [RecipeController::class, 'destroy'])->name('receta.destroy');
+Route::put('/receta/{id}', [RecipeController::class, 'update'])->name('receta.update');
+Route::get('/receta/{slug}', [RecipeController::class, 'show'])->name('receta.show');
+Route::get('/receta/{slug}/edit', [RecipeController::class, 'edit'])->name('receta.edit');
 Route::post('/receta/{id}/vote-up', [RecipeController::class, 'vote_up'])->name('receta.vote-up');
 Route::post('/receta/{id}/vote-down', [RecipeController::class, 'vote_down'])->name('receta.vote-down');
-Route::post('/receta/{id}/hide', [RecipeController::class, 'hide'])->name('receta.hide');
+Route::get('/receta/{id}/hide', [RecipeController::class, 'hide'])->name('receta.hide');
+Route::post('/receta/{slug}/{image_id}/delete', [RecipeController::class, 'destroy_recipe_image'])->name('recipe.destroy_image');
 
 Route::get('/perfil/{nickname}', [ProfileController::class, 'index'])->name('perfil.index');
 Route::get('/perfil/{nickname}/recetas', [ProfileController::class, 'show'])->name('perfil.show');
@@ -49,4 +55,4 @@ Route::get('login/social/callback/{provider}', [LoginController::class, 'handleP
 Route::post('/receta/comment', [CommentController::class, 'store'])->name('comment.store');
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::match(['get', 'post'], '/carpetasupersecreta', [BotController::class, 'setup']);
+Route::match(['get', 'post'], '/carpetasupersecreta', [BotController::class, 'gestionar']);

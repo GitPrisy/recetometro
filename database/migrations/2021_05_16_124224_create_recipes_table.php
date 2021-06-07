@@ -23,6 +23,7 @@ class CreateRecipesTable extends Migration
             $table->text('ingredients');
             $table->text('preparation');
             $table->boolean('visible')->default(true);
+            $table->unsignedInteger('total_votes')->default(0);
             $table->foreignId('user_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
