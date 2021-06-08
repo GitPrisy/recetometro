@@ -85,7 +85,9 @@ class RecipeController extends Controller
             ]);
         }
         session(['recipe' => $recipe]);
-        return redirect('/');
+        
+        return redirect('/recetobot');
+
     }
 
     /**
@@ -203,7 +205,7 @@ class RecipeController extends Controller
      */
     public function destroy($id)
     {
-        $recipe = Recipe::where('id', '=', $id)->where('visible', '=', '1')->firstOrFail();
+        $recipe = Recipe::where('id', '=', $id)->firstOrFail();
 
         $recipe->delete();
 

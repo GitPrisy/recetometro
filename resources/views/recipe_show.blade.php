@@ -23,9 +23,9 @@
                 <div class="modal-footer justify-content-around">
                     <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">Volver</button>
 
-                    <form id="formularioBorrado" action="{{ route('receta.destroy', $recipe->id) }}" data-action="{{ route('receta.destroy', $recipe->id) }}" method="POST">
-                        @method('DELETE')
+                    <form id="formularioBorrado" action="{{ route('receta.destroy', $recipe->id) }}" data-action="{{ route('receta.destroy', 0) }}" method="POST">
                         @csrf
+                        @method('DELETE')
                         <button type="submit" class="btn btn-danger btn-lg">Eliminar</button>
                     </form>
                 </div>
@@ -34,17 +34,12 @@
     </div>
     <script>
         window.onload = function() {
-            $('#removeCripto').on('show.bs.modal', function(event) {
-                var button = $(event.relatedTarget) // Button that triggered the modal
-                var id = button.data('id') // Extract info from data-* attributes
-                console.log(id);
-                // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-                // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+            $('#deleteRecipe').on('show.bs.modal', function(event) {
+                var button = $(event.relatedTarget)
+                var id = button.data('id') 
                 var modal = $(this)
-                modal.find('.modal-title').text('Olvidando criptomoneda con identificador: ' + id)
+                // modal.find('.modal-title').text('Olvidando criptomoneda con identificador: ' + id)
 
-                // Cogemos el accion del data-action por que éste no cambia a lo largo de los distintos borrados.
-                // Y así no tenemos problemas al intentar borrar registros con más de 1 dígito o que nos mantenga los dígitos del registro borrado anteriormente.
                 accion = $("#formularioBorrado").attr("data-action").slice(0, -1) + id
                 $("#formularioBorrado").attr('action', accion)
             })

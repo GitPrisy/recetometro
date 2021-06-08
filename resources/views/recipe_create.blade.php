@@ -124,6 +124,9 @@
                         <fieldset>
                             <h4>Por último unas fotos del resultado</h4>
                             <div class="mb-3">
+                                <div class="mb-3">
+                                    <img id="select-image" class="img-fluid mx-auto d-block" width="200px" src="/images/default.jpeg">
+                                </div>
                                 <label for="images" class="form-label fancy-file-label"> 
                                     <span class="icon-primary mr-3"><i class="far fa-images"></i></span>
                                     <span id="input-file">Seleccionar imagenes</span>
@@ -155,6 +158,29 @@
     </div>
     <script src="{{ asset('ckeditor-5/ckeditor.js') }}"></script>
 <script>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#select-image').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        $("#images").change(function(){
+            readURL(this);
+        });
+        window.onload = function() {
+            $('#deleteRecipe').on('show.bs.modal', function(event) {
+                var button = $(event.relatedTarget)
+                var id = button.data('id') 
+                var modal = $(this)
+                // modal.find('.modal-title').text('Olvidando criptomoneda con identificador: ' + id)
+
+            })
+        }
         CKEDITOR.replace( 'ingredients' );
         CKEDITOR.replace( 'preparation' );
 

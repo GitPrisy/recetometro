@@ -56,3 +56,4 @@ Route::post('/receta/comment', [CommentController::class, 'store'])->name('comme
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::match(['get', 'post'], '/carpetasupersecreta', [BotController::class, 'gestionar']);
+Route::get('/recetobot', [BotController::class, 'recetobot'])->name('recetobot');

@@ -15,7 +15,9 @@
             body: data,
         }).then(function(res) {
             if(res.status == 503) {
-                $('#delete-'+image_id).html('<div class="alert alert-danger ml-5 mr-5" role="alert">La receta debe tener por lo menos una imagen...</div>').removeClass('form-label fancy-file-label')
+                console.log($('#delete-'+image_id));
+                $('#delete-'+image_id).after('<div class="alert alert-danger mt-3 ml-5 mr-5" role="alert">La receta debe tener por lo menos una imagen...</div>')
+                $('#delete-'+image_id).remove();
             } else {
                 $('#img-'+image_id).fadeOut();
                 $('#delete-'+image_id).fadeOut();
@@ -164,12 +166,12 @@
                                     <span class="icon-primary mr-3"><i class="far fa-images"></i></span>
                                     <span id="input-file-{{$recipe_image}}">Sustituir imagen</span>
                                 </label>
-                                <label id="delete-{{$images[$key]->id}}" class="mt-4 form-label fancy-file-label" onclick="deleteImage('{{$recipe->slug}}', '{{$images[$key]->id}}')"> 
-                                    <span class="icon-danger mr-3"><i class="fas fa-trash-alt"></i></span>
-                                    <span>Eliminar imagen</span>
-                                </label>
-                                
                                 <input class="form-control fancy-file-input" accept="image/png, image/gif, image/jpeg, image/jpg" type="file" name="images[]" id="image-{{$recipe_image}}">
+
+                                <button data-id="{{$recipe->id}}" type="button" data-dismiss="modal" data-toggle="modal" data-target="#deleteRecipe" id="delete-{{$images[$key]->id}}" for="image-{{$recipe_image}}" class="form-label fancy-file-label mt-2"> 
+                                    <span class="icon-primary mr-3"><i class="far fa-trash-alt"></i></span>
+                                    <span id="input-file-{{$recipe_image}}">Eliminar imagen</span>
+                                </button>
 
                             </div>
                             <input type="button" name="previous" class="previous btn btn-secondary" value="Previo" />
@@ -186,6 +188,9 @@
                         <fieldset>
                             <h4>Por último unas fotos del resultado</h4>
                             <div class="mb-3">
+                                <div class="mb-3">
+                                    <img id="select-image" class="img-fluid mx-auto d-block" width="200px" src="/images/default.jpeg">
+                                </div>
                                 <label for="images" class="form-label fancy-file-label"> 
                                     <span class="icon-primary mr-3"><i class="far fa-images"></i></span>
                                     <span id="input-file">Seleccionar imagenes</span>
@@ -215,6 +220,47 @@
             @endif
         </div>
     </div>
+    <div class="modal fade" id="deleteRecipe" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header mx-auto">
+                    <h4 class="modal-title" id="exampleModalToggleLabel">{{$recipe->slug}}¿Seguro que quieres borrar esta imagen?{{$images[$key]->id}}</h4>
+                </div>
+                
+                <div class="modal-footer justify-content-around">
+                    <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">Volver</button>
+
+                    <button type="button" data-dismiss="modal" onclick="deleteImage('{{$recipe->slug}}', '{{$images[$key]->id}}')" class="btn btn-danger btn-lg">Eliminar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#select-image').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        $("#images").change(function(){
+            console.log('f')
+            readURL(this);
+        });
+        window.onload = function() {
+            $('#deleteRecipe').on('show.bs.modal', function(event) {
+                var button = $(event.relatedTarget)
+                var id = button.data('id') 
+                var modal = $(this)
+                // modal.find('.modal-title').text('Olvidando criptomoneda con identificador: ' + id)
+
+            })
+        }
+    </script>
     <script src="{{ asset('ckeditor-5/ckeditor.js') }}"></script>
 <script>
 
