@@ -8,9 +8,11 @@ use App\Models\User;
 use App\Models\Vote;
 use App\Models\Image;
 use App\Models\Recipe;
+use App\Mail\NewRecipe;
 use App\Models\RecipeTag;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Jobs\NewRecipeMailJob;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use App\Http\Requests\StoreRecipePost;
@@ -84,6 +86,12 @@ class RecipeController extends Controller
                 'recipe_id' => $recipe_id,
             ]);
         }
+
+        $users = User::select()->where('mailable', '=', '1')->get();
+        foreach($users as $user){
+            NewRecipeMailJob::dispatch($recipe->title, $recipe->ingredients, $recipe->preparation, $user->email);
+        }
+
         session(['recipe' => $recipe]);
         
         return redirect('/recetobot');

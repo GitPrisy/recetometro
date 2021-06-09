@@ -77,6 +77,7 @@
                             <input type="text" name="title" id="title" class="form-control mb-4" value="{{old('title')}}">
                             <input type="button" name="previous" class="align-self-end previous btn btn-secondary" value="Previo" />
                             <input type="button" name="next" class="align-self-end next btn btn-primary" value="Siguiente" />
+                            <div class="" id="char-limit-title"></div>
                             @error('title')
                                 <span>
                                     <strong class="text-danger">{{ $message }}</strong>
@@ -224,6 +225,17 @@
             $('#input-file').css('color', '#e3342f');
         });
 
+        $("#title").on('keypress', function() {
+            var limit = 60;
+            $("#title").attr('maxlength', limit);
+            var init = $(this).val().length;
+            
+            if(init<limit){
+                init++;
+                $('#char-limit-title').text(init+'/'+limit); 
+            }
+        
+        });
         $("#description").on('keypress', function() {
             var limit = 250;
             $("#description").attr('maxlength', limit);

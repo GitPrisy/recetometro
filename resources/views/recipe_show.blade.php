@@ -85,7 +85,35 @@
     </div>
     @auth
     @if(Auth::user()->rol_id == '1' || Auth::user()->rol_id == '2')
-    <a href="{{route('receta.hide', $recipe->id)}}">Ocultar esta receta de la web por contendio inapropiado.</a>
+    <a href="" data-dismiss="modal" data-toggle="modal" data-target="#hideRecipe" data-id="{{$recipe->id}}">Ocultar esta receta de la web por contendio inapropiado.</a>
+
+    <div class="modal fade" id="hideRecipe" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header mx-auto">
+                    <h4 class="modal-title" id="exampleModalToggleLabel">¿Seguro que quieres borrar esta receta?</h4>
+                </div>
+                
+                <div class="modal-footer justify-content-around">
+                    <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">Volver</button>
+
+                    <form id="formularioHide" action="{{route('receta.hide', $recipe->id)}}" data-action="{{ route('receta.hide', 0) }}" method="get">
+                        <button type="submit" class="btn btn-danger btn-lg">Eliminar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        window.onload = function() {
+            $('#hideRecipe').on('show.bs.modal', function(event) {
+                var button = $(event.relatedTarget)
+                var id = button.data('id') 
+                var modal = $(this)
+
+            })
+        }
+    </script>
     @endif
     @endauth
     <h4 class="mt-5">Comentarios: </h4>
