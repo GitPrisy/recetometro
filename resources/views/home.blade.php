@@ -1,89 +1,41 @@
 @extends('layouts.app')
 @section('content')
 <nav class="navbar navbar-dark bg-primary">
-  <div class="container-fluid justify-content-around">
-    <div class="dropdown">
-        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMean" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Modos de preparación
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMean">
-            <form action="{{ route('receta.search') }}" method="GET">
-                @foreach($means as $mean)
-                <button class="dropdown-item" type="submit" name="herramienta" value="{{ $mean->slug }}">{{$mean->name}}</button>
-                @endforeach
-            </form>
+    <div class="container-fluid justify-content-around">
+        <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMean" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Modos de preparación
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMean">
+                <form action="{{ route('receta.search') }}" method="GET">
+                    @foreach($means as $mean)
+                    <button class="dropdown-item" type="submit" name="preparacion" value="{{ $mean->slug }}">{{$mean->name}}</button>
+                    @endforeach
+                </form>
+            </div>
+        </div>
+        <div class="dropdown">
+            <p class="fw-bold text-light mb-0 dropdown-toggle" type="button" id="dropdownTag" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Características
+            </p>
+            <div class="dropdown-menu dropdown-menu-center" aria-labelledby="dropdownTag">
+                <form action="{{ route('receta.search') }}" method="GET">
+                    @foreach($tags as $tag)
+                    <button class="dropdown-item" type="submit" name="tag" value="{{ $tag->slug }}">{{$tag->name}}</button>
+                    @endforeach
+                </form>
+            </div>
         </div>
     </div>
-    <div class="dropdown">
-        <p class="fw-bold text-light mb-0 dropdown-toggle" type="button" id="dropdownTag" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Características
-        </p>
-        <div class="dropdown-menu dropdown-menu-center" aria-labelledby="dropdownTag">
-            <form action="{{ route('receta.search') }}" method="GET">
-                @foreach($tags as $tag)
-                <button class="dropdown-item" type="submit" name="caracteristica" value="{{ $tag->slug }}">{{$tag->name}}</button>
-                @endforeach
-            </form>
-        </div>
-    </div>
-  </div>
 </nav>
 
 <div class="container">
-
-    <!-- Cards -->
     <div class="row" id="post-data" pages="{{$recipes->lastPage()}}">
         @include('layouts.cards')
     </div>
 
-    <!-- Data Loader -->
-    <div class="auto-load text-center" style="display: none">
-        <svg version="1.1" id="L9" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-            x="0px" y="0px" height="60" viewBox="0 0 100 100" enable-background="new 0 0 0 0" xml:space="preserve">
-            <path fill="#000"
-                d="M73,50c0-12.7-10.3-23-23-23S27,37.3,27,50 M30.9,50c0-10.5,8.5-19.1,19.1-19.1S69.1,39.5,69.1,50">
-                <animateTransform attributeName="transform" attributeType="XML" type="rotate" dur="1s"
-                    from="0 50 50" to="360 50 50" repeatCount="indefinite" />
-            </path>
-        </svg>
+    <div class="auto-load text-center my-3" style="display: none">
+        <img src="{{asset('images/logos/loading-buffering.gif')}}" alt="Cargando..." width="60" height="60">
     </div>
-
-    <script>
-        function loadMore(page) {
-            $.ajax({
-                url: '?page=' + page,
-                type: 'get',
-                beforeSend: function() {
-                    $('.auto-load').show();
-                },
-            })
-            .done(function(data){
-                if(typeof data.html == 'undefined') {
-                    
-                    return;
-                }
-                $('.auto-load').hide();
-                $('#post-data').append(data.html);
-            })
-            .fail(function(data) {
-                if(typeof data.html == 'undefined') {
-                    $('.auto-load').html("No se han encontrado más recetas en esta página...");
-                    return;
-                }
-                $('.auto-load').hide();
-                $('#post-data').append(data.html);
-            });
-        }
-
-        var page = 1;
-        $(document).scroll( function(){
-            if($(window).scrollTop() + window.innerHeight >= $(document).height()-200) {
-                if(page < $('#post-data').attr('pages')) {
-                    page++
-                    loadMore(page);
-                }
-            }
-        });  
-    </script>
 </div>
 @endsection

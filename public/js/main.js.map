@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack:///./resources/js/main.js"],"names":["$","click","alert"],"mappings":";;;;;AAAAA,CAAC,CAAE,WAAF,CAAD,CAAiBC,KAAjB,CAAuB,YAAW;AAC9BC,OAAK,CAAE,8BAAF,CAAL;AACH,CAFD,E","file":"/js/main.js","sourcesContent":["$( \"#logout-a\" ).click(function() {\n    alert( \"Handler for .click() called.\" );\n});"],"sourceRoot":""}

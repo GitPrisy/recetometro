@@ -1,0 +1,56 @@
+.fancy-file-label{
+    height: 40px;
+    width: 250px;
+    font-weight: 600;
+    background-color: var(--white);
+    border-radius: .25rem;
+    border: 1px solid;
+    border-color: var(--secondary);
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 1s ease, color 1s ease;
+}
+
+.fancy-file-label:hover{
+    color: var(--primary);
+    background-color: #cfcfcf;
+}
+
+.fancy-file-input{
+    display: none;
+}
+
+#char-limit{
+    display: inline-block;
+    width: 100%;
+    transform: translate(-10px, -90px);
+    text-align: right;
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.modal-content {
+    border-radius: 1rem;
+}
+
+.logo > a {
+    color:inherit;
+    text-decoration:inherit;
+}
+
+.go-top {
+	display:none;
+	padding:20px;
+	font-size:20px;
+	cursor:pointer;
+	position: fixed;
+	bottom:20px;
+	right:20px;
+    z-index: 1000;
+}
+
+#regiration_form fieldset:not(:first-of-type) {
+    display: none;
+}

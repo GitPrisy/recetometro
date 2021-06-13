@@ -55,7 +55,7 @@ class StoreRecipePost extends FormRequest
             'tag.*' => 'exists:tags,id',
             'mean' => 'required|exists:means,id',
             'file' => 'nullable|array',
-            'file.*' => 'nullable|mimes:jpeg,png,jpg,gif|max:15000',
+            'file.*' => 'nullable|mimes:jpeg,png,jpg,gif|max:2048',
         ];
     }
 }

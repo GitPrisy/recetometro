@@ -24,7 +24,7 @@ class ProfileController extends Controller
         }
 
         if(Auth::user() == $user[0]){
-            return view('profile')->with(['user' => $user[0], 'n_votes' => $n_votes, 'n_recipes' => $n_recipes]);
+            return view('profile.profile')->with(['user' => $user[0], 'n_votes' => $n_votes, 'n_recipes' => $n_recipes]);
         }
 
         return abort(404);
@@ -57,7 +57,7 @@ class ProfileController extends Controller
                 return response()->json(['html'=>$view]);
             }
 
-            return view('profile_index')->with(['user' => $user[0], 'recipes' => $recipes, 'recipe_images' => $recipe_images, 'recipe_votes' => $recipe_votes, 'n_votes' => $n_votes]);
+            return view('profile.profile_index')->with(['user' => $user[0], 'recipes' => $recipes, 'recipe_images' => $recipe_images, 'recipe_votes' => $recipe_votes, 'n_votes' => $n_votes]);
         }
         return abort(404);
     }
@@ -77,7 +77,7 @@ class ProfileController extends Controller
             return abort(404);
         }
 
-        return view('profile_edit', ['user' => $user[0]]);
+        return view('profile.profile_edit', ['user' => $user[0]]);
     }
 
         /**
@@ -109,6 +109,7 @@ class ProfileController extends Controller
 
             return $this->edit($user->nickname);
         }
+ 
         $user->update($request->validated());
         $user->save();
 

@@ -1,0 +1,7 @@
+@each $color, $value in $theme-colors {
+    .icon-#{$color} {
+        font-size: 1.5em;
+        color: $value;
+        margin-bottom: 5px;
+    }
+}

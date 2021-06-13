@@ -70,7 +70,7 @@ class HomeController extends Controller
                 if(($titulo = $request->titulo)) {
                     $query->orWhere('title', 'LIKE', '%' . $titulo . '%');
                 }
-                if(($tag_slug = $request->caracteristica)) {
+                if(($tag_slug = $request->tag)) {
                     $tag = Tag::where('slug', '=', $tag_slug)->firstOrFail();
 
                     $recipes = $tag->recipes;
@@ -83,7 +83,7 @@ class HomeController extends Controller
                         $query->orWhere('id', '=', '0'); 
                     }
                 }
-                if(($mean_slug = $request->herramienta)) {
+                if(($mean_slug = $request->preparacion)) {
                     $mean = Mean::where('slug', '=', $mean_slug)->firstOrFail();
 
                     $recipes = $mean->recipes;

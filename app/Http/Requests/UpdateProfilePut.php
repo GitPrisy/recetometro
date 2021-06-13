@@ -38,7 +38,10 @@ class UpdateProfilePut extends FormRequest
     public function rules()
     {
         return [
+            'name' => 'required|max:90',
             'nickname' => 'required|min:5|max:90',
+            'email' => 'required|email|unique:users,email,'.$this->user()->id,
+            'mailable' => 'required|boolean',
         ];
     }
 }

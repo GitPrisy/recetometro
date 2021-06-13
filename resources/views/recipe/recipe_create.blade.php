@@ -226,7 +226,7 @@
         });
 
         $("#title").on('keypress', function() {
-            var limit = 60;
+            var limit = 55;
             $("#title").attr('maxlength', limit);
             var init = $(this).val().length;
             
@@ -237,7 +237,7 @@
         
         });
         $("#description").on('keypress', function() {
-            var limit = 250;
+            var limit = 220;
             $("#description").attr('maxlength', limit);
             var init = $(this).val().length;
             

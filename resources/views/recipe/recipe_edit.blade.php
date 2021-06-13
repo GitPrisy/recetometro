@@ -1,31 +1,5 @@
 @extends('layouts.app')
 @section('content')
-<style type="text/css">
-    #regiration_form fieldset:not(:first-of-type) {
-        display: none;
-    }
-</style>
-<script>
-    function deleteImage(slug, image_id) {
-        const url = '/receta/' + slug + '/' + image_id + '/delete';
-        const data = new URLSearchParams();
-        data.append('_token', '{{ csrf_token() }}');
-        fetch(url, {
-            method: "POST",
-            body: data,
-        }).then(function(res) {
-            if(res.status == 503) {
-                console.log($('#delete-'+image_id));
-                $('#delete-'+image_id).after('<div class="alert alert-danger mt-3 ml-5 mr-5" role="alert">La receta debe tener por lo menos una imagen...</div>')
-                $('#delete-'+image_id).remove();
-            } else {
-                $('#img-'+image_id).fadeOut();
-                $('#delete-'+image_id).fadeOut();
-                $('#update-'+image_id).fadeOut();   
-            }
-        })
-    }
-</script>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -133,7 +107,7 @@
                         </fieldset>
                         <fieldset>
                             <h4>Indique la lista de ingredientes necesarios</h4>
-                            <textarea class="editor form-control mb-4" name="ingredients" id="ingredients" rows="3">{{$recipe->ingredients}}</textarea>
+                            <textarea value="{{$recipe->ingredients}}" class="editor form-control mb-4" name="ingredients" id="ingredients" rows="3"></textarea>
                             <input type="button" name="previous" class="align-self-end previous btn btn-secondary" value="Previo" />
                             <input type="button" name="next" class="align-self-end next btn btn-primary" value="Siguiente" />
                             @error('ingredients')
@@ -145,7 +119,7 @@
                         </fieldset>
                         <fieldset>
                             <h4>Describa la preparación de la receta</h4>
-                            <textarea class="editor form-control mb-4" name="preparation" id="preparation" rows="3">{{$recipe->preparation}}</textarea>
+                            <textarea value="{{$recipe->preparation}}" class="editor form-control mb-4" name="preparation" id="preparation" rows="3"></textarea>
                             <input type="button" name="previous" class="align-self-end previous btn btn-secondary" value="Previo" />
                             <input type="button" name="next" class="align-self-end next btn btn-primary" value="Siguiente" />
                             @error('preparation')
@@ -157,18 +131,18 @@
                         </fieldset>
                         @foreach($recipe_images as $key=>$recipe_image)
                         <fieldset>
-                            <h4>Por último unas fotos del resultado</h4>
+                            <h4>Fotos de la receta:</h4>
                             <div class="mb-3">
                                 <div id="img-{{$images[$key]->id}}" class="mb-3">
-                                    <img class="img-fluid mx-auto d-block" width="200px" src="/{{$recipe_image}}">
+                                    <img class="img-fluid mx-auto d-block select-image" alt="$images[$key]->image" width="200px" src="/{{$recipe_image}}">
                                 </div>
                                 <label id="update-{{$images[$key]->id}}" for="image-{{$recipe_image}}" class="form-label fancy-file-label"> 
                                     <span class="icon-primary mr-3"><i class="far fa-images"></i></span>
                                     <span id="input-file-{{$recipe_image}}">Sustituir imagen</span>
                                 </label>
-                                <input class="form-control fancy-file-input" accept="image/png, image/gif, image/jpeg, image/jpg" type="file" name="images[]" id="image-{{$recipe_image}}">
+                                <input class="form-control fancy-file-input image-input" accept="image/png, image/gif, image/jpeg, image/jpg" type="file" name="images[]" id="image-{{$recipe_image}}">
 
-                                <button data-id="{{$recipe->id}}" type="button" data-dismiss="modal" data-toggle="modal" data-target="#deleteRecipe" id="delete-{{$images[$key]->id}}" for="image-{{$recipe_image}}" class="form-label fancy-file-label mt-2"> 
+                                <button data-slug="{{$recipe->slug}}" data-id="{{$images[$key]->id}}" type="button" data-dismiss="modal" data-toggle="modal" data-target="#deleteRecipe" id="delete-{{$images[$key]->id}}" for="image-{{$recipe_image}}" class="form-label fancy-file-label mt-2"> 
                                     <span class="icon-primary mr-3"><i class="far fa-trash-alt"></i></span>
                                     <span id="input-file-{{$recipe_image}}">Eliminar imagen</span>
                                 </button>
@@ -189,13 +163,13 @@
                             <h4>Por último unas fotos del resultado</h4>
                             <div class="mb-3">
                                 <div class="mb-3">
-                                    <img id="select-image" class="img-fluid mx-auto d-block" width="200px" src="/images/default.jpeg">
+                                    <img id="select-image" alt="Imagen de previsualización." class="img-fluid mx-auto d-block select-image" width="200px" src="/images/default.jpeg">
                                 </div>
-                                <label for="images" class="form-label fancy-file-label"> 
+                                <label for="image-input" class="form-label fancy-file-label"> 
                                     <span class="icon-primary mr-3"><i class="far fa-images"></i></span>
                                     <span id="input-file">Seleccionar imagenes</span>
                                 </label>
-                                <input class="form-control fancy-file-input" accept="image/png, image/gif, image/jpeg, image/jpg" type="file" name="images[]" multiple="" id="images">
+                                <input class="form-control fancy-file-input image-input" accept="image/png, image/gif, image/jpeg, image/jpg" type="file" name="images[]" multiple="" id="image-input">
                             </div>
                             <input type="button" name="previous" class="align-self-end previous btn btn-secondary" value="Previo" />
                             <input type="submit" name="submit" class="align-self-end submit btn btn-success" value="Enviar" id="submit_data" />
@@ -230,36 +204,25 @@
                 <div class="modal-footer justify-content-around">
                     <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">Volver</button>
 
-                    <button type="button" data-dismiss="modal" onclick="deleteImage('{{$recipe->slug}}', '{{$images[$key]->id}}')" class="btn btn-danger btn-lg">Eliminar</button>
+                    <button id="deleteImageButton" type="button" data-dismiss="modal" class="btn btn-danger btn-lg">Eliminar</button>
                 </div>
             </div>
         </div>
     </div>
     <script>
-        function readURL(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
+        // window.onload = function() {
+        //     $('#deleteRecipe').on('show.bs.modal', function(event) {
+        //         var button = $(event.relatedTarget)
 
-                reader.onload = function (e) {
-                    $('#select-image').attr('src', e.target.result);
-                }
-
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-        $("#images").change(function(){
-            console.log('f')
-            readURL(this);
-        });
-        window.onload = function() {
-            $('#deleteRecipe').on('show.bs.modal', function(event) {
-                var button = $(event.relatedTarget)
-                var id = button.data('id') 
-                var modal = $(this)
-                // modal.find('.modal-title').text('Olvidando criptomoneda con identificador: ' + id)
-
-            })
-        }
+        //         const slug = button.data("slug");
+        //         const id = button.data("id");
+        //         console.log(id);
+        //         console.log(slug);
+        //         $('#deleteImageButton').on('click', function(){
+        //             deleteImage(slug, id);
+        //         });
+        //     });
+        // }
     </script>
     <script src="{{ asset('ckeditor-5/ckeditor.js') }}"></script>
 <script>

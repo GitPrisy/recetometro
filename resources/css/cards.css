@@ -1,0 +1,91 @@
+/* Cards */
+.card {
+    margin: 1rem;
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 1rem;
+    border: hidden;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
+        rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+}
+
+.card-header:first-child {
+    border-radius: 1rem 1rem 0 0;
+}
+
+.card-img-body {
+    border-radius: 1rem 1rem 0 0;
+}
+
+.card-h .card-img-body {
+    border-radius: 1rem 0 0 1rem;
+}
+
+.card-img-body {
+    overflow: hidden;
+    width: 300px;
+    max-height: 225px;
+}
+
+.card-img, .card-img-top {
+    object-fit: cover;
+}
+
+.card-h {
+    width: 100%;
+    flex-flow: wrap;
+    height: 225px;
+}
+
+.card-h .card-img-body {
+    flex: 1;
+    height: 225px;
+    max-width: 300px;
+}
+
+.card-h .card-body {
+    flex: 2;
+    height: 225px;
+}
+
+.card-h .card-time {
+    position: absolute;
+    bottom: 8%;
+    right: 2.5%;
+}
+
+.mobile-description {
+    height: 155px;
+    overflow: hidden;
+}
+
+.mobile-description::before {
+    content: "";
+    position: absolute;
+    bottom: 115px;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: linear-gradient(transparent, #f0f0f0);
+}
+
+.desktop-title {
+    height: 25px;
+    overflow: hidden;
+}
+
+.desktop-description {
+    height: 80px;
+    overflow: hidden;
+}
+
+.desktop-description::before {
+    content: "";
+    position: absolute;
+    bottom: 88px;
+    left: 320px;
+    width: 625px;
+    height: 50px;
+    background: linear-gradient(transparent, #f0f0f0);
+}

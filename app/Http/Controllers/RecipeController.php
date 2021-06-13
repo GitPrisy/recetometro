@@ -29,7 +29,7 @@ class RecipeController extends Controller
         $tags = Tag::select()->get();
         $means = Mean::select()->get();
 
-        return view("recipe_create", ['recipes' => new Recipe(), 'tags' => $tags, 'means' => $means]);
+        return view("recipe.recipe_create", ['recipes' => new Recipe(), 'tags' => $tags, 'means' => $means]);
     }
 
     /**
@@ -119,7 +119,7 @@ class RecipeController extends Controller
             }
         }
         
-        return view("recipe_show", ['recipe' => $recipe, 'recipe_images' => $recipe_images]);
+        return view("recipe.recipe_show", ['recipe' => $recipe, 'recipe_images' => $recipe_images]);
     }
 
     /**
@@ -145,7 +145,7 @@ class RecipeController extends Controller
     
         $tags = Tag::select()->get();        
         $means = Mean::select()->get();
-        return view("recipe_edit", ['recipe' => $recipe, 'recipe_images' => $recipe_images, 'tags' => $tags, 'means' => $means, 'images' => $images]);
+        return view("recipe.recipe_edit", ['recipe' => $recipe, 'recipe_images' => $recipe_images, 'tags' => $tags, 'means' => $means, 'images' => $images]);
     }
 
     /**
@@ -195,6 +195,9 @@ class RecipeController extends Controller
             }
 
             foreach ($recipe_images as $recipe_image) {
+                if (Image::where('image', '=', $recipe_image)->first()){
+                    Image::where('image', '=', $recipe_image)->first()->delete();
+                }
                 Image::create([
                     'image' => $recipe_image,
                     'recipe_id' => $recipe_id,

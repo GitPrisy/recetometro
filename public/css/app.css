@@ -1,5 +1,22 @@
-@import url(https://fonts.googleapis.com/css?family=Rubik);
 @charset "UTF-8";
+/* latin-ext */
+@font-face {
+  font-family: "Mitr";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/mitr/v6/pxiEypw5ucZF8ZcaJJnecmNE.woff2) format("woff2");
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: "Mitr";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/mitr/v6/pxiEypw5ucZF8ZcaJJfecg.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
 /*!
  * Bootstrap v4.6.0 (https://getbootstrap.com/)
  * Copyright 2011-2021 The Bootstrap Authors
@@ -33,7 +50,7 @@
   --breakpoint-md: 768px;
   --breakpoint-lg: 992px;
   --breakpoint-xl: 1200px;
-  --font-family-sans-serif: "Rubik", sans-serif;
+  --font-family-sans-serif: "Mitr", sans-serif;
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
@@ -56,7 +73,7 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 
 body {
   margin: 0;
-  font-family: "Rubik", sans-serif;
+  font-family: "Mitr", sans-serif;
   font-size: 0.9rem;
   font-weight: 400;
   line-height: 1.6;
@@ -5585,7 +5602,7 @@ a.close.disabled {
   z-index: 1070;
   display: block;
   margin: 0;
-  font-family: "Rubik", sans-serif;
+  font-family: "Mitr", sans-serif;
   font-style: normal;
   font-weight: 400;
   line-height: 1.6;
@@ -5687,7 +5704,7 @@ a.close.disabled {
   z-index: 1060;
   display: block;
   max-width: 276px;
-  font-family: "Rubik", sans-serif;
+  font-family: "Mitr", sans-serif;
   font-style: normal;
   font-weight: 400;
   line-height: 1.6;
@@ -10002,3 +10019,393 @@ h3 {
     border-color: #dee2e6;
   }
 }
+.icon-primary {
+  font-size: 1.5em;
+  color: #e3342f;
+  margin-bottom: 5px;
+}
+
+.icon-secondary {
+  font-size: 1.5em;
+  color: #6c757d;
+  margin-bottom: 5px;
+}
+
+.icon-success {
+  font-size: 1.5em;
+  color: #38c172;
+  margin-bottom: 5px;
+}
+
+.icon-info {
+  font-size: 1.5em;
+  color: #6cb2eb;
+  margin-bottom: 5px;
+}
+
+.icon-warning {
+  font-size: 1.5em;
+  color: #ffed4a;
+  margin-bottom: 5px;
+}
+
+.icon-danger {
+  font-size: 1.5em;
+  color: #F5463D;
+  margin-bottom: 5px;
+}
+
+.icon-light {
+  font-size: 1.5em;
+  color: #f8f9fa;
+  margin-bottom: 5px;
+}
+
+.icon-dark {
+  font-size: 1.5em;
+  color: #343a40;
+  margin-bottom: 5px;
+}
+/* Cards */
+.card {
+    margin: 1rem;
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 1rem;
+    border: hidden;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+}
+
+.card-header:first-child {
+    border-radius: 1rem 1rem 0 0;
+}
+
+.card-img-body, .card-img {
+    border-radius: 1rem 0 0 1rem;
+}
+
+.card-img-top{
+    border-radius: 1rem 1rem 0 0;
+}
+
+.card-img-body {
+    width: 300px;
+    height: 225px;
+}
+
+.card-img-top {
+    width: 300px;
+    height: 225px;
+}
+
+.card-link {
+    font-size: 1rem;
+    margin-left: 40%;
+    color: --orange;
+}
+
+.card-img {
+    height: 225px;
+    width: 300px;
+}
+
+.card-h {
+    width: 100%;
+    flex-flow: wrap;
+    height: 225px;
+}
+
+.card-h .card-img-body {
+    flex: 1;
+    height: 225px;
+    width: 200px;
+}
+
+.card-h .card-body {
+    flex: 2;
+    height: 225px;
+}
+
+.card-h .card-time {
+    position: absolute;
+    bottom: 8%;
+    right: 2.5%;
+}
+
+.mobile-description {
+    height: 155px;
+    overflow: hidden;
+}
+
+.mobile-description::before {
+    content: '';
+    position: absolute;
+    bottom: 130px;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: linear-gradient(transparent, #f0f0f0);
+}
+
+/* Carousel */
+.carousel {
+    width: 100%;
+    height: 56.25%;
+}
+
+.carousel-item {
+    width:100%;
+    height:60vh;
+    text-align:center;
+    border-radius: 1rem;
+    overflow:hidden;
+}
+  
+.carousel-item img {
+    min-width:100%;
+    max-width:none;
+    height:60vh;
+    margin:0 -100%;
+}
+
+@media (max-width: 576px) {
+    .carousel-item {
+        width:100%;
+        height:30vh;
+        text-align:center;
+        border-radius: 1rem;
+        overflow:hidden;
+    }
+      
+    .carousel-item img {
+        min-width:100%;
+        max-width:none;
+        height:30vh;
+        margin:0 -100%;
+    }
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    font-size: 1.5em;
+    opacity: 1;
+}
+.icon-dark {
+    font-size: 1.5em;
+    color: #0f0f0f;
+    margin-bottom: 5px;
+}
+
+.icon-light {
+    font-size: 1.5em;
+    color: #F0F0F0;
+    margin-bottom: 5px;
+}
+
+.icon-primary {
+    font-size: 1.5em;
+    color: #e3342f;
+    margin-bottom: 5px;
+}
+
+.fancy-file-label{
+    height: 40px;
+    width: 250px;
+    font-weight: 600;
+    background-color: var(--white);
+    border-radius: .25rem;
+    border: 1px solid;
+    border-color: var(--secondary);
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 1s ease, color 1s ease;
+}
+
+.fancy-file-label:hover{
+    color: var(--primary);
+    background-color: #cfcfcf;
+}
+
+.fancy-file-input{
+    display: none;
+}
+
+#char-limit{
+    display: inline-block;
+    width: 100%;
+    transform: translate(-10px, -90px);
+    text-align: right;
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.modal-content {
+    border-radius: 1rem;
+}
+
+.logo > a {
+    color:inherit;
+    text-decoration:inherit;
+}
+
+.go-top {
+	display:none;
+	padding:20px;
+	font-size:20px;
+	cursor:pointer;
+	position: fixed;
+	bottom:20px;
+	right:20px;
+    z-index: 1000;
+}
+.emp-profile{
+    margin: auto;
+    border-radius: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+    background: var(--white);
+    width: 85%;
+    padding: 2rem;
+}
+
+.profile-img{
+    text-align: center;
+}
+
+.profile-img img{
+    width: 70%;
+    height: 100%;
+}
+
+.profile-img .file {
+    overflow: hidden;
+    width: 200px;
+    height: 40px;
+    border: none;
+    border-radius: 0;
+    font-size: 15px;
+    background: #212529b8;
+    transform: translate(0, -40px);
+}
+
+.profile-img .file input {
+    opacity: 0;
+    width: 200px;
+    height: 40px;
+    transform: translate(-15px, -30px);
+}
+
+.profile-edit-btn{
+    font-size: 1rem;
+    border: none;
+    border-radius: 1.5rem;
+    width: 70%;
+    font-weight: 600;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+    color: var(--secondary);
+    cursor: pointer;
+}
+
+.profile-edit-btn:hover{
+    color: var(--primary);
+}
+
+.proile-rating{
+    font-size: 1rem;
+    color: var(--secondary);
+}
+.proile-rating span{
+    color: var(--dark);
+    font-size: 15px;
+    font-weight: 600;
+}
+.profile-tab{
+    font-size: 1rem;
+}
+.profile-tab label{
+    font-weight: 600;
+}
+
+.profile-head .form-control-plaintext{
+    text-align: center;
+    font-size: 1.2rem;
+}
+.form-control-plaintext {
+    color: var(--primary);
+    font-weight: 600;
+}
+.form-control-plaintext:focus {
+    outline: var(--primary) auto 1px;
+    outline-color: var(--primary);
+    outline-style: auto;
+    outline-width: 1px;
+}
+.sidenav {
+    padding-top: 60px;
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1050;
+    top: 0;
+    left: 0;
+    background-color: #0F0F0F;
+    overflow-x: hidden;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: 0.5s;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0px;
+}
+
+.sidenav a {
+    color: var(--light);
+    display: block;
+    padding: 8px 8px 8px 32px;
+    transition: all 0.3s ease 0s;
+}
+
+.sidenav a:hover {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+.sidenav footer a {
+    padding: 0;
+}
+
+.sidenav .copy {
+    margin-top: .75rem;
+    color: var(--light);
+    font-weight: 600;
+}
+
+.sidenav footer h5 {
+    margin-top: .75rem;
+    color: var(--light);
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.sidenav .menu {
+    height: 45vh;
+}
+
+.sidenav footer .social {
+    height: 45vh;
+}
+
+#sidebar-button-close {
+    position: absolute;
+    top: 1.7%;
+    left: 13%;
+}
+
+
+
+/*# sourceMappingURL=app.css.map*/
